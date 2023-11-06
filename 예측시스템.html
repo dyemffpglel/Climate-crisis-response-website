@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Company</title>
+
+    <!-- 외부 스타일시트 적용 -->
+    <link rel="stylesheet" href="./홈화면.css" media="(min-width:600px)"
+</head>
+<body>
+
+    <div id="page">
+
+        <header>
+            <head>
+                <meta charset="utf-8">
+                <title>5강 이미지</title>
+              </head>
+              <body>
+                <img src="로고.png" height="95px" alt="로고">
+              </body>
+
+            <div id="top_menu">
+                <a href="./홈화면.html">HOME</a> |
+                <a href="./공지사항.html">NOTICE</a> |
+                <a href="./로그인.html">LOGIN</a> |
+                <a href="./회원가입.html">SIGNUP</a>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="./태풍.html">태풍</a></li>
+                    <li><a href="./폭염.html">폭염</a></li>
+                    <li><a href="./폭우.html">폭우</a></li>
+                    <li><a href="./list.html">게시판</a></li>
+                    <li><a href="./예측시스템.html">예측시스템</a></li>
+                    <li><a href="./pong.html">게임</a></li>
+                    <li><a href="스네이크.html">게임2</a></li>
+                </ul>
+            </nav>    
+    </div>
+</body>
+</html>
+
+<html>
+ <head>
+     <title>기후위기 예측 프로그램</title>
+     <meta charset="utf-8">
+     <script src="https://www.gstatic.com/firebasejs/7.2/firebase.js"></script>
+       <style></style>
+ </head>
+ <body id="body">
+
+   
+     <style>p {
+         font-size: 50px;
+            }
+            </style>
+
+
+
+<a href="https://www.weather.go.kr/w/index.do">실시간 기상청 정보</a>
+     <script type="text/javascript" src="/resource/function/function.js"></script>
+     <p id="object"></p>
+     <pre id="demos"></pre>
+<img id="png", style ="width: 1024px; height: 512px;">
+<p id="temp" ></p>
+<!-- <input type="text" placeholder="stock" id="id" class="account">
+<button id="stock_input"class="account">stock_input</button> -->
+
+</img >
+     <script>
+         var firebaseConfig = {
+             apiKey: "AIzaSyAJrxEQ1PWstA-U46YkZ94fM-dDFDmE8N0",
+  authDomain: "ios3-84364.firebaseapp.com",
+  databaseURL: "https://ios3-84364-default-rtdb.firebaseio.com",
+  projectId: "ios3-84364",
+  storageBucket: "ios3-84364.appspot.com",
+    messagingSenderId: "773309982251",
+  appId: "1:773309982251:web:8f544afeb5949ffa24ac6e",
+  measurementId: "G-Q08QQP5SE0"
+         };
+         // Initialize Firebase
+         firebase.initializeApp(firebaseConfig);
+         var database = firebase.database();
+         // firebase에서 읽기
+     
+         console.log("온도가 올라갈 예정입니다")
+         var demo = document.getElementById("object");
+         var temp = document.getElementById("temp");
+         var id = document.getElementById("id");
+         var stock_input=document.getElementById("stock_input");
+         var dbRef1 = firebase.database().ref().child("demo");
+         dbRef1.on('value', snap => demo.innerHTML = snap.val());
+         dbRef1.on('value', snap => {
+             demo.innerText = JSON.stringify(snap.val(),null,3);
+             console.log (typeof(demo.innerText))
+          if (demo.innerText==='\"온도가 올라갈 예정입니다\"') {
+              console.log("온도가 올라갈 예정입니다")
+              document.getElementById("png").src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaXFIjYZDU1Yw6dsYt4a3T1s6SreRhQYG_KA&usqp=CAU";
+          }
+          else if (demo.innerText==='\"온도가 내려갈 예정입니다\"') {
+              console.log("온도가 내려갈 예정입니다")
+              document.getElementById("png").src="https://mblogthumb-phinf.pstatic.net/20160513_38/87hcs_1463119305973pFNv9_JPEG/%BD%C3%BF%F8%C7%D1%B9%E8%B0%E6%C8%AD%B8%E9_%282%29.jpg?type=w800"
+          }
+         });
+         var dbRef2 = firebase.database().ref().child("temp");
+
+         dbRef2.on('value', snap => temp.innerHTML = snap.val());
+
+         stock_input.addEventListener('click',() =>{
+           alert(id.value)
+       database.ref().child("stock").set(id.value);
+
+})
+     </script>
+
+ </body>
+</html>
